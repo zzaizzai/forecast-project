@@ -9,17 +9,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BasicController {
     @GetMapping("/")
     @ResponseBody
-    String hello() {
+    public String hello() {
         return "hello";
     }
     @GetMapping("/index")
-    String index() {
+    public String index() {
         return "index.html";
     }
     @GetMapping("/test")
-    String test(Model model) {
+    public String test(Model model) {
         model.addAttribute("abc", "abc is my name");
         return "test.html";
     }
 
+    @GetMapping("/test2")
+    public String test2() {
+        return "views/test2.html";
+    }
 }
