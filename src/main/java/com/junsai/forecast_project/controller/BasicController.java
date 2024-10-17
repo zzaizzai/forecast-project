@@ -1,4 +1,4 @@
-package com.junsai.forecast_project;
+package com.junsai.forecast_project.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
