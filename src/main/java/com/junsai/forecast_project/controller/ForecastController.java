@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/forecast")
 public class ForecastController {
@@ -16,7 +18,10 @@ public class ForecastController {
         this.forecastService = forecastService;
     }
     @GetMapping("/index")
-    public String index() {
+    public String index(Model model) {
+        List<Forecast> forecastList = forecastService.getAllForecasts();
+        System.out.println(forecastList);
+        model.addAttribute("forecastList", forecastList);
         return "views/forecast/index.html";
     }
 
@@ -28,7 +33,6 @@ public class ForecastController {
     @PostMapping("/add")
     @ResponseBody
     public Forecast addForecast(@RequestBody  ForecastCreateDTO forecastCreateDTO) {
-
         return forecastService.createForecast(forecastCreateDTO);
     }
 

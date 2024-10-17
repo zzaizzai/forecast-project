@@ -1,33 +1,23 @@
 package com.junsai.forecast_project.model;
 
-import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.util.Date;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Setter
+@Getter
+@NoArgsConstructor
 @Table(name = "forecasts")
-public class Forecast {
+public class Forecast extends BaseEntity {
 
     public Forecast(String name) {
         this.name = name;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    protected  Integer  id;
-    private String name;
-
-//    Not work ???
-    @Column(name = "created_date", updatable = false)
-    @CreatedDate
-    private Date createdDate;
-
-    @Column(name = "updated_date")
-    @LastModifiedDate
-    private Date updatedDate;
 
 }

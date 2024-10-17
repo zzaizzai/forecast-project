@@ -2,17 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/default_layout">
 <div>
-  <th:block layout:fragment="content">
-    <h4>Forecast Index Page</h4>
-
-    <div>Search Input Box</div>
-    <form action="/forecast/index" method="GET">
-        <input type="text" name="q" placeholder="Enter keyword">
-        <button type="submit">Search</button>
-    </form>
-
-    <h4>List</h4>
-
-  </th:block>
+    <th:block layout:fragment="content">
+        <h4>Forecast Index Page</h4>
+        <div>Search Input Box</div>
+        <form action="/forecast/index" method="GET">
+            <input type="text" name="q" placeholder="Enter keyword">
+            <button type="submit">Search</button>
+        </form>
+        <h4>List</h4>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>CreatedDate</th>
+                <th>UpdatedDate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="forecast : ${forecastList}">
+                <td th:text="${forecast.name}"></td>
+                <td th:text="${forecast.formattedCreatedDate}"></td>
+                <td th:text="${forecast.formattedUpdatedDate}"></td>
+                <td th:text="${forecast.unit}"></td>
+                <td th:text="${forecast.quantity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </th:block>
 </div>
 </html>

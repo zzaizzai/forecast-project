@@ -5,13 +5,19 @@ import com.junsai.forecast_project.model.Forecast;
 import com.junsai.forecast_project.repository.ForecastRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ForecastService {
-
+    
     private final ForecastRepository forecastRepository;
 
     public ForecastService(ForecastRepository forecastRepository) {
         this.forecastRepository = forecastRepository;
+    }
+
+    public List<Forecast> getAllForecasts() {
+        return forecastRepository.findAll();
     }
 
     public Forecast createForecast(ForecastCreateDTO forecastCreateDTO) {
