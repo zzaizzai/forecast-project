@@ -3,8 +3,12 @@
       layout:decorate="layout/default_layout">
 <div>
     <th:block layout:fragment="content">
-        <h4>Forecast Index Page</h4>
-        <div>Search Input Box</div>
+        <h2>Forecast Index Page</h2>
+
+        <!--        Add page-->
+        <a href="/forecast/add">Add New One</a>
+
+        <h3>Search</h3>
         <form action="/forecast/index" method="GET">
             <input type="text" name="q" placeholder="Enter keyword">
             <button type="submit">Search</button>
@@ -16,6 +20,11 @@
                 <th>Name</th>
                 <th>CreatedDate</th>
                 <th>UpdatedDate</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Check</th>
+
+
             </tr>
             </thead>
             <tbody>
@@ -25,6 +34,7 @@
                 <td th:text="${forecast.formattedUpdatedDate}"></td>
                 <td th:text="${forecast.unit}"></td>
                 <td th:text="${forecast.quantity}"></td>
+                <td><a th:href="@{'/forecast/detail/' + ${forecast.id}}">Link</a></td>
             </tr>
             </tbody>
         </table>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+<div>
+    <th:block layout:fragment="content">
+        <h2>Forecast Detail Page</h2>
+
+        <div class="container">
+            <div class="row">
+                <div class="label">Name</div>
+                <div class="value" th:text="${forecast.name}"></div>
+            </div>
+
+            <div class="row">
+                <div class="label">Created Date</div>
+                <div class="value" th:text="${forecast.createdDate}"></div>
+            </div>
+
+            <div class="row">
+                <div class="label">Updated Date</div>
+                <div class="value" th:text="${forecast.updatedDate}"></div>
+            </div>
+
+            <div class="row">
+                <div class="label">Unit</div>
+                <div class="value" th:text="${forecast.unit}"></div>
+            </div>
+
+            <div class="row">
+                <div class="label">Quantity</div>
+                <div class="value" th:text="${forecast.quantity}"></div>
+            </div>
+        </div>
+
+    </th:block>
+</div>
+</html>

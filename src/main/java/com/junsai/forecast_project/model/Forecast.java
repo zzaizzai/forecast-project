@@ -16,8 +16,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "forecasts")
 public class Forecast extends BaseEntity {
 
-    public Forecast(String name) {
+    public Forecast(String name, String unit, Double quantity) {
         this.name = name;
+        this.unit = unit;
+        this.quantity = quantity;
     }
 
 }
