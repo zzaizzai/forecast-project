@@ -36,7 +36,7 @@ public abstract class BaseEntity {
     protected Double quantity;
 
 
-    public String getFormattedDateTime(Double dateDouble) {
+    private String getFormattedDateTime(Double dateDouble) {
 
         String quantityStr = String.valueOf(dateDouble.longValue());
 
@@ -60,14 +60,17 @@ public abstract class BaseEntity {
 
     public String formattedQuantity() {
 
-//        show as 2024-12-12
-        if (this.unit != null & this.unit.equals("Date")) {
-            return this.getFormattedDateTime(this.quantity);
-        }
-
-//        show as 2024-12-12 12:12
-        if (this.unit != null & this.unit.equals("Datetime")) {
-            return this.getFormattedDateTime(this.quantity);
+        try {
+            //        show as 2024-12-12
+            if (this.unit != null & this.unit.equals("Date")) {
+                return this.getFormattedDateTime(this.quantity);
+            }
+            //        show as 2024-12-12 12:12
+            if (this.unit != null & this.unit.equals("Datetime")) {
+                return this.getFormattedDateTime(this.quantity);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
 
 //        show as 1,000,000 or 1.123

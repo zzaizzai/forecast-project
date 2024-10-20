@@ -3,7 +3,35 @@
       layout:decorate="layout/default_layout">
 <div>
     <th:block layout:fragment="content">
-        Result Index Page
+        <h2>Result Index Page</h2>
+
+        <h4>List</h4>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>CreatedDate</th>
+                <th>UpdatedDate</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Check</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="result : ${resultList}">
+                <td th:text="${result.name}"></td>
+                <td th:text="${result.formattedCreatedDate}"></td>
+                <td th:text="${result.formattedUpdatedDate}"></td>
+                <td th:text="${result.unit}"></td>
+                <td th:text="${result.formattedQuantity}"></td>
+                <td><a th:href="@{'/result/detail/' + ${result.id}}">Link</a></td>
+            </tr>
+            </tbody>
+        </table>
+
     </th:block>
 </div>
 </html>

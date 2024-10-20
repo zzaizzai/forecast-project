@@ -11,3 +11,6 @@ INSERT INTO forecasts(name, created_date, updated_date, unit, quantity ) VALUES 
 INSERT INTO forecasts(name, created_date, updated_date, unit, quantity ) VALUES ('forecast7', '2024-10-17 06:21', '2024-10-17 06:21', 'dollars', 1600);
 INSERT INTO forecasts(name, created_date, updated_date, unit, quantity ) VALUES ('forecast8', '2024-10-18 06:21', '2024-10-18 06:21', 'yen', 20000);
 INSERT INTO forecasts(name, created_date, updated_date, unit, quantity ) VALUES ('forecast9', '2024-10-19 06:21', '2024-10-19 06:21', 'yen', 10000000000);
+
+
+INSERT INTO results(name, parent_id, created_date, updated_date, unit, quantity ) VALUES ('result1', 1 , '2024-10-11 06:21', '2024-10-11 06:21', 'k/m', 3);
