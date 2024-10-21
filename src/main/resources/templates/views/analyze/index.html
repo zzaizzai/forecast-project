@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+<div>
+    <th:block layout:fragment="content">
+        <h2>Analyze Index Page</h2>
+
+        <div>Download CSV</div>
+        <button>Download Button</button>
+
+        <h3>Search</h3>
+        <form action="/forecast/index" method="GET">
+            <input type="text" name="q" placeholder="Enter keyword">
+            <button type="submit">Search</button>
+        </form>
+        <h4>List</h4>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Unit</th>
+                <th>Forecast</th>
+                <th>Result</th>
+                <th>Diff</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <!--            <tr th:each="forecast : ${forecastList}">-->
+            <!--                <td th:text="${forecast.name}"></td>-->
+            <!--                <td th:text="${forecast.formattedCreatedDate}"></td>-->
+            <!--                <td th:text="${forecast.formattedUpdatedDate}"></td>-->
+            <!--                <td th:text="${forecast.unit}"></td>-->
+            <!--                <td th:text="${forecast.formattedQuantity}"></td>-->
+            <!--                <td><a th:href="@{'/forecast/detail/' + ${forecast.id}}">Link</a></td>-->
+            <!--            </tr>-->
+            </tbody>
+        </table>
+    </th:block>
+</div>
+</html>
