@@ -14,3 +14,8 @@ INSERT INTO forecasts(name, created_date, updated_date, unit, quantity ) VALUES 
 
 
 INSERT INTO results(name, parent_id, created_date, updated_date, unit, quantity ) VALUES ('result1', 1 , '2024-10-11 06:21', '2024-10-11 06:21', 'k/m', 3);
+INSERT INTO results(name, parent_id, created_date, updated_date, unit, quantity ) VALUES ('result1-2', 1 , '2024-10-11 06:21', '2024-10-11 06:21', 'k/m', 10.5);
+INSERT INTO results(name, parent_id, created_date, updated_date, unit, quantity ) VALUES ('result2', 2 , '2024-10-12 06:21', '2024-12-11 06:21', 'Date', 20231225);
+INSERT INTO results(name, parent_id, created_date, updated_date, unit, quantity ) VALUES ('result2-2', 2 , '2024-10-12 06:21', '2024-12-11 06:21', 'Date', 20241225);
+INSERT INTO results(name, parent_id, created_date, updated_date, unit, quantity ) VALUES ('result4', 4 , '2024-10-12 06:21', '2024-12-11 06:21', 'Date', 202512251210);
+INSERT INTO results(name, parent_id, created_date, updated_date, unit, quantity ) VALUES ('result4-2', 4 , '2024-10-12 06:21', '2024-12-11 06:21', 'Date', 202412251215);

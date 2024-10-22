@@ -26,14 +26,14 @@
             </tr>
             </thead>
             <tbody>
-            <!--            <tr th:each="forecast : ${forecastList}">-->
-            <!--                <td th:text="${forecast.name}"></td>-->
-            <!--                <td th:text="${forecast.formattedCreatedDate}"></td>-->
-            <!--                <td th:text="${forecast.formattedUpdatedDate}"></td>-->
-            <!--                <td th:text="${forecast.unit}"></td>-->
-            <!--                <td th:text="${forecast.formattedQuantity}"></td>-->
-            <!--                <td><a th:href="@{'/forecast/detail/' + ${forecast.id}}">Link</a></td>-->
-            <!--            </tr>-->
+            <tr th:each="result : ${resultList}">
+                <td th:text="${result.getForecastName}"></td>
+                <td th:text="${result.unit}"></td>
+                <td th:text="${result.getForecastQuantity}"></td>
+                <td th:text="${result.formattedQuantity}"></td>
+                <td th:text="${result.getDiff}"></td>
+                <!--                            <td><a th:href="@{'/forecast/detail/' + ${forecast.id}}">Link</a></td>-->
+            </tr>
             </tbody>
         </table>
     </th:block>

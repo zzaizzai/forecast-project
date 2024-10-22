@@ -19,5 +19,24 @@ public class Result extends BaseEntity {
     @JoinColumn(name = "parent_id", nullable = false)
     private Forecast forecast;
 
-    
+    public Integer getForecastId() {
+        return this.forecast.getId();
+    }
+
+    public String getForecastName() {
+        return this.forecast.getName();
+    }
+
+    public String getForecastQuantity() {
+        return this.forecast.formattedQuantity();
+    }
+
+    public String getForecastUnit() {
+        return this.forecast.getUnit();
+    }
+
+    public Double getDiff() {
+        return this.forecast.getQuantity() - this.getQuantity();
+    }
+
 }
