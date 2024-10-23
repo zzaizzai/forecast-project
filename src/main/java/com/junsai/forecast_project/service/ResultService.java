@@ -21,7 +21,7 @@ public class ResultService {
     }
 
     public List<Result> getAllResults() {
-        return resultRepository.findAll();
+        return resultRepository.findByDeleted(false);
     }
 
 

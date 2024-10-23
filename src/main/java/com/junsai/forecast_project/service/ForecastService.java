@@ -18,7 +18,7 @@ public class ForecastService {
     }
 
     public List<Forecast> getAllForecasts() {
-        return forecastRepository.findAll();
+        return forecastRepository.findByDeleted(false);
     }
 
     public Forecast createForecast(ForecastCreateDTO forecastCreateDTO) {

@@ -35,6 +35,7 @@ public abstract class BaseEntity {
 
     protected Double quantity;
 
+    @Column(name = "deleted", nullable = false)
     protected boolean deleted = false;
 
     private String getFormattedDateTime(Double dateDouble) {
