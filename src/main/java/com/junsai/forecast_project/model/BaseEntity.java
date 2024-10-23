@@ -35,6 +35,7 @@ public abstract class BaseEntity {
 
     protected Double quantity;
 
+    protected boolean deleted = false;
 
     private String getFormattedDateTime(Double dateDouble) {
 

@@ -1,5 +1,6 @@
 package com.junsai.forecast_project.model;
 
+import com.junsai.forecast_project.util.DateTimeUtil;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -7,11 +8,15 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+
+import java.text.DecimalFormat;
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
+@SQLDelete(sql = "UPDATE results SET deleted = true where id = ?")
 @Table(name = "results")
 public class Result extends BaseEntity {
 
@@ -37,6 +42,21 @@ public class Result extends BaseEntity {
 
     public Double getDiff() {
         return this.forecast.getQuantity() - this.getQuantity();
+    }
+
+    public String formattedDiff() {
+
+        try {
+            if (this.unit != null & this.unit.equals("Date")) {
+                return DateTimeUtil.formattedDatetimeDiff(this.forecast.getQuantity(), this.getQuantity());
+            }
+
+            Double diffDouble = this.getDiff();
+            DecimalFormat decimalFormat = new DecimalFormat("#,###.##########");
+            return decimalFormat.format(diffDouble);
+        } catch (Exception e) {
+            return "Error:" + e;
+        }
     }
 
 }

@@ -6,7 +6,9 @@
         <h2>Analyze Index Page</h2>
 
         <div>Download CSV</div>
-        <button>Download Button</button>
+        <form action="/api/download-csv" method="GET">
+            <button type="submit">Download Button</button>
+        </form>
 
         <h3>Search</h3>
         <form action="/forecast/index" method="GET">
@@ -31,7 +33,7 @@
                 <td th:text="${result.unit}"></td>
                 <td th:text="${result.getForecastQuantity}"></td>
                 <td th:text="${result.formattedQuantity}"></td>
-                <td th:text="${result.getDiff}"></td>
+                <td th:text="${result.formattedDiff}"></td>
                 <!--                            <td><a th:href="@{'/forecast/detail/' + ${forecast.id}}">Link</a></td>-->
             </tr>
             </tbody>
