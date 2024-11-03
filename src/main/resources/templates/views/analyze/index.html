@@ -19,6 +19,7 @@
         <table>
             <thead>
             <tr>
+                <th>Group</th>
                 <th>Name</th>
                 <th>Unit</th>
                 <th>Forecast</th>
@@ -29,6 +30,7 @@
             </thead>
             <tbody>
             <tr th:each="result : ${resultList}">
+                <td th:text="${result.getForecastGroupName}"></td>
                 <td th:text="${result.getForecastName}"></td>
                 <td th:text="${result.unit}"></td>
                 <td th:text="${result.getForecastQuantity}"></td>
