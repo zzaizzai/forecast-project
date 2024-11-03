@@ -28,6 +28,11 @@ public class ResultController {
         return "views/result/index.html";
     }
 
+    @GetMapping("/add")
+    public String add(Model model) {
+        return "views/result/add.html";
+    }
+
     @GetMapping("/detail/{resultId}")
     public String detail(@PathVariable String resultId, Model model) {
         try {

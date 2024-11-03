@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+<div>
+    <th:block layout:fragment="content">
+        <h2>Result Add Page</h2>
+
+        <form action="/result/add" method="POST">
+            <input type="number" placeholder="forecast id" name="forecastId">
+            <input type="text" placeholder="name" name="name">
+            <input type="text" placeholder="unit" name="unit">
+            <input type="number" placeholder="quantity" name="quantity">
+            <button type="submit">Submit</button>
+        </form>
+
+    </th:block>
+</div>
+</html>

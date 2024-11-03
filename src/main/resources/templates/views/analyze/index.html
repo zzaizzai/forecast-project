@@ -25,6 +25,7 @@
                 <th>Forecast</th>
                 <th>Result</th>
                 <th>Diff</th>
+                <th>Check</th>
 
             </tr>
             </thead>
@@ -36,7 +37,7 @@
                 <td th:text="${result.getForecastQuantity}"></td>
                 <td th:text="${result.formattedQuantity}"></td>
                 <td th:text="${result.formattedDiff}"></td>
-                <!--                            <td><a th:href="@{'/forecast/detail/' + ${forecast.id}}">Link</a></td>-->
+                <td><a th:href="@{'/analyze/detail/' + ${result.id}}">Link</a></td>
             </tr>
             </tbody>
         </table>
