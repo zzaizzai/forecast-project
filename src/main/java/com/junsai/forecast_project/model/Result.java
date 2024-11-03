@@ -59,4 +59,12 @@ public class Result extends ForecastResultBaseEntity {
         }
     }
 
+    public String getForecastGroupName() {
+        return this.forecast.getForecastGroupName();
+    }
+
+    public Integer getForecastGroupId() {
+        return this.forecast.getForecastGroupId();
+    }
+
 }

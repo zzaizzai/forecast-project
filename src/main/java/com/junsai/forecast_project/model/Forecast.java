@@ -1,8 +1,6 @@
 package com.junsai.forecast_project.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,10 +16,22 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "forecasts")
 public class Forecast extends ForecastResultBaseEntity {
 
+    @ManyToOne
+    @JoinColumn(name = "forecast_group_id", nullable = false)
+    private ForecastGroup forecastGroup;
+
     public Forecast(String name, String unit, Double quantity) {
         this.name = name;
         this.unit = unit;
         this.quantity = quantity;
+    }
+
+    public String getForecastGroupName() {
+        return this.forecastGroup.getName();
+    }
+
+    public Integer getForecastGroupId() {
+        return this.forecastGroup.getId();
     }
 
 }
