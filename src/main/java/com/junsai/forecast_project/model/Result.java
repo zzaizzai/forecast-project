@@ -18,7 +18,7 @@ import java.text.DecimalFormat;
 @NoArgsConstructor
 @SQLDelete(sql = "UPDATE results SET deleted = true where id = ?")
 @Table(name = "results")
-public class Result extends BaseEntity {
+public class Result extends ForecastResultBaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "parent_id", nullable = false)

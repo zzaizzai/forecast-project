@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.text.DecimalFormat;
 import java.util.Date;
 
 
@@ -31,14 +30,11 @@ public abstract class BaseEntity {
     @LastModifiedDate
     protected Date updatedDate;
 
-    protected String unit;
-
-    protected Double quantity;
 
     @Column(name = "deleted", nullable = false)
     protected boolean deleted = false;
 
-    private String getFormattedDateTime(Double dateDouble) {
+    protected String getFormattedDateTime(Double dateDouble) {
 
         String quantityStr = String.valueOf(dateDouble.longValue());
 
@@ -59,26 +55,6 @@ public abstract class BaseEntity {
         }
     }
 
-
-    public String formattedQuantity() {
-
-        try {
-            //        show as 2024-12-12
-            if (this.unit != null & this.unit.equals("Date")) {
-                return this.getFormattedDateTime(this.quantity);
-            }
-            //        show as 2024-12-12 12:12
-            if (this.unit != null & this.unit.equals("Datetime")) {
-                return this.getFormattedDateTime(this.quantity);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
-//        show as 1,000,000 or 1.123
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.##########");
-        return decimalFormat.format(this.quantity);
-    }
 
     public String formattedCreatedDate() {
         return DateTimeUtil.formatDateTime(this.createdDate);

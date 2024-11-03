@@ -16,7 +16,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @NoArgsConstructor
 @SQLDelete(sql = "UPDATE forecasts SET deleted = true where id = ?")
 @Table(name = "forecasts")
-public class Forecast extends BaseEntity {
+public class Forecast extends ForecastResultBaseEntity {
 
     public Forecast(String name, String unit, Double quantity) {
         this.name = name;
