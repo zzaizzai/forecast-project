@@ -54,7 +54,6 @@ public class ForecastController {
             model.addAttribute("error", "Forecast not found for ID: " + forecastId);
             return "main/errorPage.html";
         } catch (Exception e) {
-            e.printStackTrace();
             model.addAttribute("error", "An unexpected error occurred: " + e.getMessage());
             return "main/errorPage.html";
         }

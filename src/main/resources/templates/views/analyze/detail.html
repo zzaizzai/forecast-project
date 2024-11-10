@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+<div>
+    <th:block layout:fragment="content">
+        <h2>Analyze Detail Page</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th colspan="3">Common</th>
+
+                <th colspan="4">Forecast</th>
+
+                <th colspan="3">Result</th>
+
+            </tr>
+
+            <tr>
+                <th>Name</th>
+                <th>Unit</th>
+                <th>Diff.</th>
+
+                <th>ID</th>
+                <th>Name</th>
+                <th>Updated</th>
+                <th>Qty.</th>
+
+                <th>ID</th>
+                <th>Updated</th>
+                <th>Qty.</th>
+
+
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+
+                <!--              Common-->
+                <td th:text="${result.getForecastGroupName}"></td>
+                <td th:text="${result.unit}"></td>
+                <td th:text="${result.formattedDiff}"></td>
+
+                <!--              Forecast-->
+                <td th:text="${result.getForecastId}"></td>
+                <td th:text="${result.getForecastName}"></td>
+                <td th:text="${result.formattedUpdatedDate}"></td>
+                <td th:text="${result.getForecastQuantity}"></td>
+
+                <!--              Result-->
+                <td th:text="${result.getId}"></td>
+                <td th:text="${result.formattedUpdatedDate}"></td>
+                <td th:text="${result.formattedQuantity}"></td>
+            </tr>
+
+            <tr>
+                <!-- TestData-->
+                <td>1</td>
+                <td>2</td>
+                <td>-5</td>
+                <td>1</td>
+                <td>101010</td>
+                <td>101</td>
+                <td>2</td>
+                <td>101010</td>
+                <td>5</td>
+                <td>5</td>
+            </tr>
+            </tbody>
+
+            <tbody>
+
+            <tr>
+                <td>101</td>
+                <td>2</td>
+            </tr>
+            </tbody>
+
+
+            <tbody>
+
+            <tr th:each="sameGroupResult : ${sameGroupResults}">
+
+                <td th:text="${sameGroupResult.getForecastGroupName}"></td>
+                <td th:text="${sameGroupResult.unit}"></td>
+                <td th:text="${sameGroupResult.formattedDiff}"></td>
+
+                <td th:text="${sameGroupResult.getForecastId}"></td>
+                <td th:text="${sameGroupResult.getForecastName}"></td>
+                <td th:text="${sameGroupResult.formattedUpdatedDate}"></td>
+                <td th:text="${sameGroupResult.getForecastQuantity}"></td>
+
+                <td th:text="${sameGroupResult.getId}"></td>
+                <td th:text="${sameGroupResult.formattedUpdatedDate}"></td>
+                <td th:text="${sameGroupResult.formattedQuantity}"></td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+    </th:block>
+</div>
+</html>

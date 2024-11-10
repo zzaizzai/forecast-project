@@ -8,5 +8,8 @@ import jakarta.persistence.Table;
 @Table(name = "forecasts_group")
 public class ForecastGroup extends BaseEntity {
 
+//    @OneToMany
+//    private Forecast forecast;
+
 
 }

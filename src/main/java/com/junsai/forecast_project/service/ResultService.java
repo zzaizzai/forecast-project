@@ -24,5 +24,9 @@ public class ResultService {
         return resultRepository.findByDeleted(false);
     }
 
+    public List<Result> getAllResultsByForecastId(Long id) {
+        return resultRepository.findAllByForecastId(id);
+    }
+
 
 }

@@ -40,7 +40,7 @@ public class Result extends ForecastResultBaseEntity {
         return this.forecast.getUnit();
     }
 
-    public Double getDiff() {
+    private Double getDiff() {
         return this.forecast.getQuantity() - this.getQuantity();
     }
 

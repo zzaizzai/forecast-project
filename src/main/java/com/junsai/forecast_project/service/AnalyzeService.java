@@ -13,4 +13,5 @@ public class AnalyzeService {
         this.resultService = resultService;
     }
 
+
 }
