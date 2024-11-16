@@ -35,8 +35,14 @@ public class ForecastController {
     @PostMapping("/add")
     @ResponseBody
     public Forecast addForecast(@ModelAttribute ForecastCreateDTO forecastCreateDTO) {
-        System.out.println(forecastCreateDTO);
-        return forecastService.createForecast(forecastCreateDTO);
+
+        System.out.println(forecastCreateDTO.toString());
+        Forecast result = forecastService.createForecast(forecastCreateDTO);
+        if (result != null) {
+            return result;
+        } else {
+            return null;
+        }
     }
 
     @GetMapping("/detail/{forecastId}")

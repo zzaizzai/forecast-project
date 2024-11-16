@@ -2,19 +2,24 @@ package com.junsai.forecast_project.service;
 
 import com.junsai.forecast_project.dto.ForecastCreateDTO;
 import com.junsai.forecast_project.model.Forecast;
+import com.junsai.forecast_project.model.ForecastGroup;
+import com.junsai.forecast_project.repository.ForecastGroupRepository;
 import com.junsai.forecast_project.repository.ForecastRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class ForecastService {
 
     private final ForecastRepository forecastRepository;
+    private final ForecastGroupRepository forecastGroupRepository;
 
-    public ForecastService(ForecastRepository forecastRepository) {
+    public ForecastService(ForecastRepository forecastRepository, ForecastGroupRepository forecastGroupRepository) {
         this.forecastRepository = forecastRepository;
+        this.forecastGroupRepository = forecastGroupRepository;
     }
 
     public List<Forecast> getAllForecasts() {
@@ -22,8 +27,12 @@ public class ForecastService {
     }
 
     public Forecast createForecast(ForecastCreateDTO forecastCreateDTO) {
-        Forecast forecast = new Forecast(forecastCreateDTO.getName(), forecastCreateDTO.getUnit(), forecastCreateDTO.getQuantity());
+
+        ForecastGroup forecastGroup = forecastGroupRepository.findById(forecastCreateDTO.getForecastGroupId())
+                .orElseThrow(() -> new NoSuchElementException());
+        Forecast forecast = new Forecast(forecastGroup, forecastCreateDTO.getName(), forecastCreateDTO.getUnit(), forecastCreateDTO.getQuantity());
         return forecastRepository.save(forecast);
+
     }
 
     public Optional<Forecast> findForeCastById(Long foreCastId) {

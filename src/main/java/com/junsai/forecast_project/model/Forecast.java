@@ -20,7 +20,8 @@ public class Forecast extends ForecastResultBaseEntity {
     @JoinColumn(name = "forecast_group_id", nullable = false)
     private ForecastGroup forecastGroup;
 
-    public Forecast(String name, String unit, Double quantity) {
+    public Forecast(ForecastGroup forecastGroup, String name, String unit, Double quantity) {
+        this.forecastGroup = forecastGroup;
         this.name = name;
         this.unit = unit;
         this.quantity = quantity;
