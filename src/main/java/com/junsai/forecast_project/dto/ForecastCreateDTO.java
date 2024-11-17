@@ -35,7 +35,7 @@ public class ForecastCreateDTO {
                 "name:" + name +
                 "unit:" + unit +
                 "quantity" + quantity;
-        
+
     }
 
 }

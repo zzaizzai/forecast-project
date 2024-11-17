@@ -11,14 +11,18 @@ import java.util.Date;
 public class DateTimeUtil {
 
     public static String formatDateTime(Date date) {
-        // Date -> LocalDateTime
-        LocalDateTime dateTime = date.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime();
+        try {
+            // Date -> LocalDateTime
+            LocalDateTime dateTime = date.toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDateTime();
 
-        // Formatting
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return dateTime.format(outputFormatter);
+            // Formatting
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            return dateTime.format(outputFormatter);
+        } catch (Exception e) {
+            return e.toString();
+        }
     }
 
     public static String formattedDatetimeDiff(Double datetimeForecastDouble, Double datetimeResultDouble)

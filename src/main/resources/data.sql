@@ -1,7 +1,7 @@
 INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com');
 INSERT INTO users (name, email) VALUES ('Jane Smith', 'jane@example.com');
 
-INSERT INTO forecasts_group(name, created_date, updated_date, deleted) VALUES ('group1', '2024-10-11 06:21', '2024-10-11 06:21', false);
+INSERT INTO forecast_group(name, created_date, updated_date, deleted) VALUES ('group1', '2024-10-11 06:21', '2024-10-11 06:21', false);
 
 INSERT INTO forecasts(name, forecast_group_id, created_date, updated_date, unit, quantity, deleted ) VALUES ('forecast1', 1, '2024-10-11 06:21', '2024-10-11 06:21', 'k/m', 3, false);
 INSERT INTO forecasts(name, forecast_group_id, created_date, updated_date, unit, quantity, deleted ) VALUES ('forecast2', 1,'2024-10-12 06:21', '2024-10-12 06:21', 'Date', 20231215, false);

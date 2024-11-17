@@ -1,18 +1,17 @@
 package com.junsai.forecast_project.model;
 
 import com.junsai.forecast_project.util.DateTimeUtil;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.text.DecimalFormat;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Setter
 @Getter
 @NoArgsConstructor
@@ -38,6 +37,21 @@ public class Result extends ForecastResultBaseEntity {
 
     public String getForecastUnit() {
         return this.forecast.getUnit();
+    }
+
+    public Result(Forecast forecast, String name, Double quantity) {
+        this.forecast = forecast;
+        this.unit = forecast.getUnit();
+        this.name = name;
+        this.quantity = quantity;
+    }
+
+    public Result(Forecast forecast, String name, int quantity) {
+        this(forecast, name, (double) quantity);
+    }
+
+    public Result(Forecast forecast, String name, long quantity) {
+        this(forecast, name, (double) quantity);
     }
 
     private Double getDiff() {

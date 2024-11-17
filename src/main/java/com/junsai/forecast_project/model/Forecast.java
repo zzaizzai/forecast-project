@@ -27,6 +27,14 @@ public class Forecast extends ForecastResultBaseEntity {
         this.quantity = quantity;
     }
 
+    public Forecast(ForecastGroup forecastGroup, String name, String unit, int quantity) {
+        this(forecastGroup, name, unit, (double) quantity);
+    }
+
+    public Forecast(ForecastGroup forecastGroup, String name, String unit, long quantity) {
+        this(forecastGroup, name, unit, (double) quantity);
+    }
+
     public String getForecastGroupName() {
         return this.forecastGroup.getName();
     }
