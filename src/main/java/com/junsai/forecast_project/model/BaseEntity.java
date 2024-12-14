@@ -28,7 +28,7 @@ public abstract class BaseEntity {
     protected String id;
 
     @PrePersist
-    public void prePersist() {
+    public void prePersistSetId() {
         if (this.id == null || this.id.isEmpty()) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMddHHmmss");
             this.id = LocalDateTime.now().format(formatter) + UUID.randomUUID().toString().substring(0, 4);

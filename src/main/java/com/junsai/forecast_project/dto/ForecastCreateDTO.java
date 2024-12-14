@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 public class ForecastCreateDTO {
 
-    private long forecastGroupId;
+    private String forecastGroupId;
 
     private String name;
 

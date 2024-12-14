@@ -38,4 +38,8 @@ public class ForecastService {
     public Optional<Forecast> findForeCastById(Long foreCastId) {
         return forecastRepository.findById(foreCastId);
     }
+
+    public List<Forecast> getAllForecastsByForecastGroupId(String forecastGroupId) {
+        return forecastRepository.findAllByForecastGroupId(forecastGroupId);
+    }
 }

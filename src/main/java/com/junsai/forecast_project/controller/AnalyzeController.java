@@ -1,7 +1,7 @@
 package com.junsai.forecast_project.controller;
 
+import com.junsai.forecast_project.model.Forecast;
 import com.junsai.forecast_project.model.ForecastGroup;
-import com.junsai.forecast_project.model.Result;
 import com.junsai.forecast_project.service.AnalyzeService;
 import com.junsai.forecast_project.service.ForecastGroupService;
 import com.junsai.forecast_project.service.ForecastService;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -44,30 +43,20 @@ public class AnalyzeController {
         return "/views/analyze/index.html";
     }
 
-    @GetMapping("/detail/{analyzeId}")
-    public String detail(@PathVariable String analyzeId, Model model) {
+    @GetMapping("/detail/{groupId}")
+    public String detail(@PathVariable String groupId, Model model) {
         try {
-            Result result = resultService.findResultById(analyzeId)
+
+            ForecastGroup forecastGroup = forecastGroupService.getOneForecastGroup(groupId)
                     .orElseThrow(() -> new NoSuchElementException());
-
-            List<Result> sameGroupResults = resultService.getAllResultsByForecastId(result.getForecastId());
-
-            Iterator<Result> iterator = sameGroupResults.iterator();
-
-//            remove result becauz of duplication
-            while (iterator.hasNext()) {
-                Result sameGroup = iterator.next();
-                if (sameGroup.equals(result)) {
-                    iterator.remove();
-                    break;
-                }
-            }
-
-            model.addAttribute("result", result);
-            model.addAttribute("sameGroupResults", sameGroupResults);
+            model.addAttribute("forecastGroup", forecastGroup);
+            
+            List<Forecast> forecasts = forecastService.getAllForecastsByForecastGroupId(groupId);
+            model.addAttribute("forecasts", forecasts);
 
             return "/views/analyze/detail.html";
         } catch (NoSuchElementException e) {
+            model.addAttribute("error", "No Such Element Exception: " + e.getMessage());
             return "main/errorPage.html";
         } catch (Exception e) {
             model.addAttribute("error", "An unexpected error occurred: " + e.getMessage());
