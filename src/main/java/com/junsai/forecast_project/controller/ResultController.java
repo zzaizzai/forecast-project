@@ -36,8 +36,7 @@ public class ResultController {
     @GetMapping("/detail/{resultId}")
     public String detail(@PathVariable String resultId, Model model) {
         try {
-            Long id = Long.parseLong(resultId);
-            Result result = resultService.findResultById(id)
+            Result result = resultService.findResultById(resultId)
                     .orElseThrow(() -> new NoSuchElementException());
             model.addAttribute("result", result);
             return "views/result/detail.html";

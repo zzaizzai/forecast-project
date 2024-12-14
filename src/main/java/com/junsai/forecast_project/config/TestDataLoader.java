@@ -24,16 +24,21 @@ public class TestDataLoader {
     ) {
         return args -> {
 
-            ForecastGroup testgroup1 = new ForecastGroup("group2");
-            forecastGroupRepository.save(testgroup1);
+            ForecastGroup Electric2024Forecast = new ForecastGroup("FY2024 Electricity Bill");
+            forecastGroupRepository.save(Electric2024Forecast);
 
-            Forecast forecast50 = new Forecast(testgroup1, "forecast50", "Datetime", 202312121010L);
+            Forecast forecast50 = new Forecast(Electric2024Forecast, "Direct Costs of Machine 12", "Yen", 200000);
             forecastRepository.save(forecast50);
-            forecastRepository.save(new Forecast(testgroup1, "forecast51", "Date", 20231215));
-            forecastRepository.save(new Forecast(testgroup1, "forecast52", "yen", 55555));
-            forecastRepository.save(new Forecast(testgroup1, "forecast53", "dollars", 66666));
 
-            resultRepository.save(new Result(forecast50, "result 50", 202312121212L));
+            Forecast forecast51 = new Forecast(Electric2024Forecast, "Direct Costs of Machine 15", "Yen", 500000);
+            forecastRepository.save(forecast51);
+
+            Forecast forecast52 = new Forecast(Electric2024Forecast, "InDirect Costs of Machines", "Yen", 600000);
+            forecastRepository.save(forecast52);
+
+            resultRepository.save(new Result(forecast50, "Direct Costs of Machine 12", 212513));
+            resultRepository.save(new Result(forecast51, "Direct Costs of Machine 15", 513245));
+            resultRepository.save(new Result(forecast52, "InDirect Costs of Machines", 579841));
 
         };
     }

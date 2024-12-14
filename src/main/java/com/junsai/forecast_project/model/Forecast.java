@@ -39,7 +39,7 @@ public class Forecast extends ForecastResultBaseEntity {
         return this.forecastGroup.getName();
     }
 
-    public Integer getForecastGroupId() {
+    public String getForecastGroupId() {
         return this.forecastGroup.getId();
     }
 

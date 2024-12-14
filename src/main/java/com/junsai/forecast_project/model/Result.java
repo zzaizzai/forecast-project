@@ -23,7 +23,7 @@ public class Result extends ForecastResultBaseEntity {
     @JoinColumn(name = "parent_id", nullable = false)
     private Forecast forecast;
 
-    public Integer getForecastId() {
+    public String getForecastId() {
         return this.forecast.getId();
     }
 
@@ -77,7 +77,7 @@ public class Result extends ForecastResultBaseEntity {
         return this.forecast.getForecastGroupName();
     }
 
-    public Integer getForecastGroupId() {
+    public String getForecastGroupId() {
         return this.forecast.getForecastGroupId();
     }
 

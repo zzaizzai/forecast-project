@@ -38,11 +38,10 @@ public class AnalyzeController {
     @GetMapping("/detail/{analyzeId}")
     public String detail(@PathVariable String analyzeId, Model model) {
         try {
-            Long analyzeIdInt = Long.parseLong(analyzeId);
-            Result result = resultService.findResultById(analyzeIdInt)
+            Result result = resultService.findResultById(analyzeId)
                     .orElseThrow(() -> new NoSuchElementException());
 
-            List<Result> sameGroupResults = resultService.getAllResultsByForecastId(result.getForecastId().longValue());
+            List<Result> sameGroupResults = resultService.getAllResultsByForecastId(result.getForecastId());
 
             Iterator<Result> iterator = sameGroupResults.iterator();
 

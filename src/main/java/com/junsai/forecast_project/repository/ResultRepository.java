@@ -7,9 +7,9 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ResultRepository extends JpaRepository<Result, Long> {
+public interface ResultRepository extends JpaRepository<Result, String> {
     List<Result> findByDeleted(boolean deleted);
 
     @Query("SELECT r FROM Result r WHERE r.forecast.id = :forecastId")
-    List<Result> findAllByForecastId(@Param("forecastId") Long forecastId);
+    List<Result> findAllByForecastId(@Param("forecastId") String forecastId);
 }

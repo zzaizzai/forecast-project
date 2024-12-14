@@ -1,14 +1,20 @@
 package com.junsai.forecast_project.model;
 
 import com.junsai.forecast_project.util.DateTimeUtil;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.UUID;
 
 
 @MappedSuperclass
@@ -18,8 +24,17 @@ import java.util.Date;
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    @Column(name = "id", nullable = true)
+    protected String id;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.id == null || this.id.isEmpty()) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMddHHmmss");
+            this.id = LocalDateTime.now().format(formatter) + UUID.randomUUID().toString().substring(0, 4);
+        }
+    }
+
     protected String name;
 
     @Column(name = "created_date", updatable = false)

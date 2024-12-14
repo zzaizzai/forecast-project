@@ -16,7 +16,7 @@ public class ResultService {
         this.resultRepository = resultRepository;
     }
 
-    public Optional<Result> findResultById(Long id) {
+    public Optional<Result> findResultById(String id) {
         return this.resultRepository.findById(id);
     }
 
@@ -24,7 +24,7 @@ public class ResultService {
         return resultRepository.findByDeleted(false);
     }
 
-    public List<Result> getAllResultsByForecastId(Long id) {
+    public List<Result> getAllResultsByForecastId(String id) {
         return resultRepository.findAllByForecastId(id);
     }
 
