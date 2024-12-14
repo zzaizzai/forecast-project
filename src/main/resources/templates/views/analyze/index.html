@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/default_layout">
+    layout:decorate="layout/default_layout">
 <div>
     <th:block layout:fragment="content">
         <h2>Analyze Index Page</h2>
@@ -18,29 +18,20 @@
         <h4>List</h4>
         <table>
             <thead>
-            <tr>
-                <th class="common">Group</th>
-                <th class="common">Name</th>
-                <th class="common">Unit</th>
-                <th>Forecast</th>
-                <th class="result">Result</th>
-                <th class="common">Diff</th>
-                <th class="common">Check</th>
+                <tr>
+                    <th class="common">Group Name</th>
+                    <th class="common">Check</th>
 
-            </tr>
+                </tr>
             </thead>
             <tbody>
-            <tr th:each="result : ${resultList}">
-                <td th:text="${result.getForecastGroupName}"></td>
-                <td th:text="${result.getForecastName}"></td>
-                <td th:text="${result.unit}"></td>
-                <td th:text="${result.getForecastQuantity}"></td>
-                <td th:text="${result.formattedQuantity}"></td>
-                <td th:text="${result.formattedDiff}"></td>
-                <td><a th:href="@{'/analyze/detail/' + ${result.id}}">Link</a></td>
-            </tr>
+                <tr th:each="fg : ${forecastGroups}">
+                    <td th:text="${fg.getName}"></td>
+                    <td><a th:href="@{'/analyze/detail/' + ${fg.id}}">Link</a></td>
+                </tr>
             </tbody>
         </table>
     </th:block>
 </div>
+
 </html>

@@ -39,6 +39,7 @@ public class TestDataLoader {
             resultRepository.save(new Result(forecast50, "Direct Costs of Machine 12", 212513));
             resultRepository.save(new Result(forecast51, "Direct Costs of Machine 15", 513245));
             resultRepository.save(new Result(forecast52, "InDirect Costs of Machines", 579841));
+            
 
         };
     }

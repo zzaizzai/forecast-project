@@ -10,4 +10,5 @@ public interface ForecastRepository extends JpaRepository<Forecast, Long> {
 
     List<Forecast> findByDeleted(boolean deleted);
 
+
 }

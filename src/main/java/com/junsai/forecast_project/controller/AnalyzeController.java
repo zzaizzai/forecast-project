@@ -1,7 +1,9 @@
 package com.junsai.forecast_project.controller;
 
+import com.junsai.forecast_project.model.ForecastGroup;
 import com.junsai.forecast_project.model.Result;
 import com.junsai.forecast_project.service.AnalyzeService;
+import com.junsai.forecast_project.service.ForecastGroupService;
 import com.junsai.forecast_project.service.ForecastService;
 import com.junsai.forecast_project.service.ResultService;
 import org.springframework.stereotype.Controller;
@@ -21,17 +23,24 @@ public class AnalyzeController {
     private final ResultService resultService;
     private final ForecastService forecastService;
     private final AnalyzeService analyzeService;
+    private final ForecastGroupService forecastGroupService;
 
-    public AnalyzeController(ResultService resultService, ForecastService forecastService, AnalyzeService analyzeService) {
+    public AnalyzeController(ResultService resultService,
+                             ForecastService forecastService,
+                             AnalyzeService analyzeService,
+                             ForecastGroupService forecastGroupService) {
         this.resultService = resultService;
         this.forecastService = forecastService;
         this.analyzeService = analyzeService;
+        this.forecastGroupService = forecastGroupService;
     }
 
     @GetMapping(value = {"/", "/index"})
     public String index(Model model) {
-        List<Result> resultList = resultService.getAllResults();
-        model.addAttribute("resultList", resultList);
+
+        List<ForecastGroup> forecastGroups = forecastGroupService.getAllForecastGroups();
+//        List<Result> resultList = resultService.getAllResults();
+        model.addAttribute("forecastGroups", forecastGroups);
         return "/views/analyze/index.html";
     }
 
