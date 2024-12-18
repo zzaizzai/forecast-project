@@ -30,7 +30,7 @@ public abstract class BaseEntity {
     @PrePersist
     public void prePersistSetId() {
         if (this.id == null || this.id.isEmpty()) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMddHHmmss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMddHHmm");
             this.id = LocalDateTime.now().format(formatter) + UUID.randomUUID().toString().substring(0, 4);
         }
     }

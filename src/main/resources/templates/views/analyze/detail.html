@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="layout/default_layout">
+      layout:decorate="layout/default_layout">
 <div>
     <th:block layout:fragment="content">
         <h2>Analyze Detail Page</h2>
@@ -8,67 +8,70 @@
 
         <table>
             <thead>
-                <tr>
-                    <th class="common" colspan="3">Common</th>
+            <tr>
+                <th class="common" colspan="3">Common</th>
 
-                    <th colspan="3">Forecast</th>
+                <th colspan="3">Forecast</th>
 
-                    <th class="result" colspan="3">Result</th>
+                <th class="result" colspan="3">Result</th>
 
-                </tr>
+            </tr>
 
-                <tr>
-                    <th class="common">Name</th>
-                    <th class="common">Unit</th>
-                    <th class="common">Diff.</th>
+            <tr>
+                <th class="common">Name</th>
+                <th class="common">Unit</th>
+                <th class="common">Diff.</th>
 
-                    <th>ID</th>
-                    <th>Updated</th>
-                    <th>Qty.</th>
+                <th>ID</th>
+                <th>Updated</th>
+                <th>Qty.</th>
 
-                    <th class="result">ID</th>
-                    <th class="result">Updated</th>
-                    <th class="result">Qty.</th>
-                </tr>
+                <th class="result">ID</th>
+                <th class="result">Updated</th>
+                <th class="result">Qty.</th>
+            </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <!--              Common-->
-                    <td th:text="${forecastGroup.getName}"></td>
-                    <!--              Result-->
-                    <td th:text="${forecastGroup.getId}"></td>
-                </tr>
+            <tr>
+                <!--              Common-->
+                <td th:text="${forecastGroup.getName}"></td>
+                <!--              Result-->
+                <td th:text="${forecastGroup.getId}"></td>
+            </tr>
 
-                <tr>
-                    <!-- TestData-->
-                    <td>1</td>
-                    <td>2</td>
-                    <td>-5</td>
-                    <td>101010</td>
-                    <td>101</td>
-                    <td>2</td>
-                    <td>101010</td>
-                    <td>5</td>
-                    <td>5</td>
-                </tr>
+            <tr>
+                <!-- TestData-->
+                <td>1</td>
+                <td>2</td>
+                <td>-5</td>
+                <td>101010</td>
+                <td>101</td>
+                <td>2</td>
+                <td>101010</td>
+                <td>5</td>
+                <td>5</td>
+            </tr>
             </tbody>
 
             <tbody>
 
-                <tr th:each="forecast : ${forecasts}">
+            <tr th:each="forecast : ${forecasts}">
 
-                    <td th:text="${forecast.getName}"></td>
-                    <td th:text="${forecast.getUnit}"></td>
-                    <td> -100</td>
-                    <td th:text="${forecast.getId}"></td>
-                    <td th:text="${forecast.updatedDate}"></td>
-                    <td th:text="${forecast.formattedQuantity}"></td>
+                <td th:text="${forecast.getName}"></td>
+                <td th:text="${forecast.getUnit}"></td>
+                <td th:text="${forecast.getDiff}"></td>
+                <td th:text="${forecast.getId}"></td>
+                <td th:text="${forecast.formattedUpdatedDate}"></td>
+                <td th:text="${forecast.formattedQuantity}"></td>
+                <!--                <td th:text="${forecast.getResult.getId}"></td>-->
+                <!--                <td th:text="${forecast.getResult.formattedUpdatedDate}"></td>-->
+                <!--                <td th:text="${forecast.getResult.formattedQuantity}"></td>-->
 
-
-                </tr>
+            </tr>
 
             </tbody>
+
 
         </table>
 

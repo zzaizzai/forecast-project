@@ -27,6 +27,10 @@ public class Forecast extends ForecastResultBaseEntity {
         this.quantity = quantity;
     }
 
+    // set later in controller
+    @Transient
+    public Result result;
+
     public Forecast(ForecastGroup forecastGroup, String name, String unit, int quantity) {
         this(forecastGroup, name, unit, (double) quantity);
     }
@@ -43,4 +47,11 @@ public class Forecast extends ForecastResultBaseEntity {
         return this.forecastGroup.getId();
     }
 
+    public Double getDiff() {
+        if (this.result == null) {
+            return 0.0;
+        } else {
+            return this.getQuantity() - this.result.getQuantity();
+        }
+    }
 }

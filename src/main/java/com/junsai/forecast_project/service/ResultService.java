@@ -27,4 +27,8 @@ public class ResultService {
     public List<Result> getAllResultsByForecastId(String id) {
         return resultRepository.findAllByForecastId(id);
     }
+
+    public Result getRecentResultsByForecastId(String forecastId) {
+        return resultRepository.findRecentResultsByForecastId(forecastId);
+    }
 }

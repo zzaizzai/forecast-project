@@ -47,12 +47,24 @@ public class AnalyzeController {
     public String detail(@PathVariable String groupId, Model model) {
         try {
 
+
+            //get forecast group
             ForecastGroup forecastGroup = forecastGroupService.getOneForecastGroup(groupId)
                     .orElseThrow(() -> new NoSuchElementException());
             model.addAttribute("forecastGroup", forecastGroup);
-            
+
+            // get forecasts
             List<Forecast> forecasts = forecastService.getAllForecastsByForecastGroupId(groupId);
             model.addAttribute("forecasts", forecasts);
+
+            // Add Results from each forecast
+//            List<Result> results = new ArrayList<>();
+//            for (Forecast forecast : forecasts) {
+//                Result result = resultService.getRecentResultsByForecastId(forecast.getId());
+//                if (result != null) {
+//                    forecast.setResult(result);
+//                }
+//            }
 
             return "/views/analyze/detail.html";
         } catch (NoSuchElementException e) {
