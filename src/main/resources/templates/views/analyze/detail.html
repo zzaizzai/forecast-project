@@ -1,75 +1,97 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/default_layout">
+    layout:decorate="layout/default_layout">
 <div>
     <th:block layout:fragment="content">
-        <h2>Analyze Detail Page</h2>
-        <h3 th:text="${forecastGroup.getName}"></h3>
+        <h1>Analyze Detail Page</h1>
+        <h2 th:text="${forecastGroup.getName}"></h2>
+
+        <div>Sort Buttons(uder construction)</div>
+        <button id="sortDiffAscButton">Diff</button>
+        <button id="sortQuantityASCButton">Large</button>
+        <button id="sortQuantityDescButton">Small</button>
+        <button id="updatedAscButton">Updated</button>
+        <script th:inline="javascript">
+
+            function updateURL(param) {
+                const currentUrl = window.location.href;
+
+                const baseUrl = currentUrl.split('?')[0];
+                const newUrl = `${baseUrl}?${param}`;
+
+                window.location.href = newUrl;
+            }
+
+            document.getElementById('sortDiffAscButton').addEventListener('click', function () {
+                updateURL('diff=asc');
+            });
+
+            document.getElementById('sortQuantityASCButton').addEventListener('click', function () {
+                updateURL('quantity=asc');
+            });
+
+            document.getElementById('sortQuantityDescButton').addEventListener('click', function () {
+                updateURL('quantity=desc');
+            });
+
+            document.getElementById('updatedAscButton').addEventListener('click', function () {
+                updateURL('updated=asc');
+            });
+        </script>
+
 
         <table>
             <thead>
-            <tr>
-                <th class="common" colspan="3">Common</th>
+                <tr>
+                    <th class="common" colspan="3">Common</th>
+                    <th colspan="3">Forecast</th>
+                    <th class="result" colspan="3">Result</th>
 
-                <th colspan="3">Forecast</th>
+                </tr>
 
-                <th class="result" colspan="3">Result</th>
+                <tr>
+                    <th class="common">Name</th>
+                    <th class="common">Unit</th>
+                    <th class="common">Diff.</th>
 
-            </tr>
+                    <th>ID</th>
+                    <th>Updated</th>
+                    <th>Qty.</th>
 
-            <tr>
-                <th class="common">Name</th>
-                <th class="common">Unit</th>
-                <th class="common">Diff.</th>
-
-                <th>ID</th>
-                <th>Updated</th>
-                <th>Qty.</th>
-
-                <th class="result">ID</th>
-                <th class="result">Updated</th>
-                <th class="result">Qty.</th>
-            </tr>
+                    <th class="result">ID</th>
+                    <th class="result">Updated</th>
+                    <th class="result">Qty.</th>
+                </tr>
             </thead>
 
-            <tbody>
-            <tr>
-                <!--              Common-->
-                <td th:text="${forecastGroup.getName}"></td>
-                <!--              Result-->
-                <td th:text="${forecastGroup.getId}"></td>
-            </tr>
 
-            <tr>
-                <!-- TestData-->
-                <td>1</td>
-                <td>2</td>
-                <td>-5</td>
-                <td>101010</td>
-                <td>101</td>
-                <td>2</td>
-                <td>101010</td>
-                <td>5</td>
-                <td>5</td>
-            </tr>
+            <tbody>
+                <tr th:each="forecast : ${forecasts}">
+                    <td th:text="${forecast.getName}"></td>
+                    <td th:text="${forecast.getUnit}"></td>
+                    <td th:text="${forecast.formattedDiff}"></td>
+                    <td th:text="${forecast.getId}"></td>
+                    <td th:text="${forecast.formattedUpdatedDate}"></td>
+                    <td th:text="${forecast.formattedQuantity}"></td>
+                    <td th:text="${forecast.getLastResult.getId}"></td>
+                    <td th:text="${forecast.getLastResult.formattedUpdatedDate}"></td>
+                    <td th:text="${forecast.getLastResult.formattedQuantity}"></td>
+                </tr>
             </tbody>
 
             <tbody>
-
-            <tr th:each="forecast : ${forecasts}">
-
-                <td th:text="${forecast.getName}"></td>
-                <td th:text="${forecast.getUnit}"></td>
-                <td th:text="${forecast.getDiff}"></td>
-                <td th:text="${forecast.getId}"></td>
-                <td th:text="${forecast.formattedUpdatedDate}"></td>
-                <td th:text="${forecast.formattedQuantity}"></td>
-                <!--                <td th:text="${forecast.getResult.getId}"></td>-->
-                <!--                <td th:text="${forecast.getResult.formattedUpdatedDate}"></td>-->
-                <!--                <td th:text="${forecast.getResult.formattedQuantity}"></td>-->
-
-            </tr>
-
+                <tr>
+                    <!-- TestData-->
+                    <td>1</td>
+                    <td>2</td>
+                    <td>-5</td>
+                    <td>101010</td>
+                    <td>101</td>
+                    <td>2</td>
+                    <td>101010</td>
+                    <td>5</td>
+                    <td>5</td>
+                </tr>
             </tbody>
 
 
@@ -77,18 +99,37 @@
 
         <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
 
-        <div id="main" style="width: 600px;height:400px;"></div>
+        <div id="main" style="width: 600px;height:600px;"></div>
         <script th:inline="javascript">
             var forecasts = [[${ forecasts }]]; // Get the list of forecasts from Thymeleaf
-            console.log(forecasts)
-            // Create arrays for the x-axis (categories) and y-axis (quantities)
+            var results = [[${ results }]]; // Get the list of results from Thymeleaf
+            console.log(forecasts);
+
+            // common
             var categories = [];
-            var quantities = [];
+
+            // forecasts
+            var forecasts_qty = [];
+            var forecasts_updated = [];
+            var forecasts_id = [];
+
+            // results
+            var results_qty = [];
+            var results_updated = [];
+            var results_id = [];
 
             // Loop through the forecasts data and populate the arrays
             for (var i = 0; i < forecasts.length; i++) {
-                categories.push(forecasts[i].name);  // Assuming forecast.getName() is available
-                quantities.push(forecasts[i].quantity);  // Assuming forecast.getFormattedQuantity() is available
+
+                categories.push(forecasts[i].name);
+
+                forecasts_qty.push(forecasts[i].quantity);
+                forecasts_updated = forecasts[i].updatedDate;
+                forecasts_id = forecasts[i].id;
+
+                results_qty.push(results[i].quantity);
+                results_updated = forecasts[i].updatedDate;
+                results_id = forecasts[i].id;
             }
 
             // ECharts configuration
@@ -97,19 +138,45 @@
                 title: {
                     text: 'Forecast Quantities'
                 },
-                tooltip: {},
+                tooltip: {
+                },
                 legend: {
-                    data: ['Quantity']
+                    data: ['Forecast', 'Result']
                 },
                 xAxis: {
-                    data: categories  // Use the dynamic categories array here
+                    data: categories,  // Use the dynamic categories array here
+                    axisLabel: {
+                        rotate: 50,
+                        textStyle: {
+                            fontSize: 15
+                        }
+                    }
                 },
                 yAxis: {},
-                series: [{
-                    name: 'Quantity',
-                    type: 'bar',
-                    data: quantities  // Use the dynamic quantities array here
-                }]
+                series: [
+                    {
+                        name: 'Forecast',
+                        type: 'bar',
+                        data: forecasts_qty,  // Use the dynamic forecast quantities array here
+                        itemStyle: {
+                            color: '#009879'
+                        }
+                    },
+                    {
+                        name: 'Result',
+                        type: 'bar',
+                        data: results_qty,  // Use the dynamic result quantities array here
+                        itemStyle: {
+                            color: '#b35757'
+                        }
+                    }
+                ],
+                grid: {
+                    left: '10%',
+                    right: '10%',
+                    bottom: '20%',
+                    containLabel: true
+                }
             };
             myChart.setOption(option);
         </script>

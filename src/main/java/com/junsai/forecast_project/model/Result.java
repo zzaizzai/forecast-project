@@ -1,5 +1,6 @@
 package com.junsai.forecast_project.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.junsai.forecast_project.util.DateTimeUtil;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -19,8 +20,10 @@ import java.text.DecimalFormat;
 @Table(name = "results")
 public class Result extends ForecastResultBaseEntity {
 
+    //JsonBackReference is used to prevent infinite recursion when serializing entities
     @ManyToOne
     @JoinColumn(name = "parent_id", nullable = false)
+    @JsonBackReference
     private Forecast forecast;
 
     public String getForecastId() {

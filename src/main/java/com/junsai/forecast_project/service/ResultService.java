@@ -29,6 +29,6 @@ public class ResultService {
     }
 
     public Result getRecentResultsByForecastId(String forecastId) {
-        return resultRepository.findRecentResultsByForecastId(forecastId);
+        return resultRepository.findRecentResultByForecastId(forecastId);
     }
 }

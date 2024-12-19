@@ -13,11 +13,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "forecast_group")
 public class ForecastGroup extends BaseEntity {
 
-    //    @OneToMany
-//    private Forecast forecast;
-
     public ForecastGroup(String name) {
         this.name = name;
+    }
+
+    public ForecastGroup(String name, String id) {
+        this.name = name;
+        this.id = id;
     }
 
 

@@ -14,5 +14,5 @@ public interface ResultRepository extends JpaRepository<Result, String> {
     List<Result> findAllByForecastId(@Param("forecastId") String forecastId);
 
     @Query("SELECT r FROM Result r WHERE r.forecast.id = :forecastId ORDER BY r.createdDate DESC")
-    Result findRecentResultsByForecastId(String forecastId);
+    Result findRecentResultByForecastId(String forecastId);
 }

@@ -42,4 +42,5 @@ public class ForecastService {
     public List<Forecast> getAllForecastsByForecastGroupId(String forecastGroupId) {
         return forecastRepository.findAllByForecastGroupId(forecastGroupId);
     }
+
 }
