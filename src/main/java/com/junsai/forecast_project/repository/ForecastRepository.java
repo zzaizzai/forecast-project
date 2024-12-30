@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ForecastRepository extends JpaRepository<Forecast, Long> {
+public interface ForecastRepository extends JpaRepository<Forecast, String> {
 
     List<Forecast> findByDeleted(boolean deleted);
 

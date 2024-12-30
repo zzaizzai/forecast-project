@@ -6,13 +6,25 @@
         <h2>Result Add Page</h2>
 
         <form action="/result/add" method="POST">
-            <input type="number" placeholder="forecast id" name="forecastId">
-            <input type="text" placeholder="name" name="name">
-            <input type="text" placeholder="unit" name="unit">
-            <input type="number" placeholder="quantity" name="quantity">
+            <table style="border-collapse: collapse; width: 100%; ">
+                <tbody>
+                <tr>
+                    <td><input type="text" placeholder="forecast id" name="forecastId"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="unit" name="unit"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="name" name="name"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="number" placeholder="quantity" name="quantity"></td>
+                </tr>
+                </tbody>
+            </table>
             <button type="submit">Submit</button>
         </form>
-
     </th:block>
 </div>
 </html>

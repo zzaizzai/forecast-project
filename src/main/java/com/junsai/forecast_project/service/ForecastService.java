@@ -35,12 +35,17 @@ public class ForecastService {
 
     }
 
-    public Optional<Forecast> findForeCastById(Long foreCastId) {
+    public Optional<Forecast> findForecastById(String foreCastId) {
         return forecastRepository.findById(foreCastId);
     }
 
     public List<Forecast> getAllForecastsByForecastGroupId(String forecastGroupId) {
         return forecastRepository.findAllByForecastGroupId(forecastGroupId);
+    }
+
+    public Optional<Forecast> getForecastById(String forecastId) {
+        Optional<Forecast> forecast = forecastRepository.findById(forecastId);
+        return forecast;
     }
 
 }

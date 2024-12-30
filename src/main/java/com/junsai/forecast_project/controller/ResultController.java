@@ -1,12 +1,12 @@
 package com.junsai.forecast_project.controller;
 
+import com.junsai.forecast_project.dto.ResultCreateDTO;
 import com.junsai.forecast_project.model.Result;
+import com.junsai.forecast_project.service.ForecastService;
 import com.junsai.forecast_project.service.ResultService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -16,9 +16,12 @@ import java.util.NoSuchElementException;
 public class ResultController {
 
     private final ResultService resultService;
+    private final ForecastService forecastService;
 
-    public ResultController(ResultService resultService) {
+    public ResultController(ResultService resultService, ForecastService forecastService) {
         this.resultService = resultService;
+        this.forecastService = forecastService;
+
     }
 
     @GetMapping("/index")
@@ -31,6 +34,21 @@ public class ResultController {
     @GetMapping("/add")
     public String add(Model model) {
         return "views/result/add.html";
+    }
+
+    @PostMapping("/add")
+    public String add(@ModelAttribute ResultCreateDTO resultCreateDTO, Model model) {
+
+        System.out.println(resultCreateDTO.toString());
+
+        try {
+            resultService.createResult(resultCreateDTO);
+            return "redirect:/result/index";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "An unexpected error occurred: " + e.getMessage());
+            return "main/errorPage.html";
+        }
     }
 
     @GetMapping("/detail/{resultId}")

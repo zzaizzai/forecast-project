@@ -48,8 +48,7 @@ public class ForecastController {
     @GetMapping("/detail/{forecastId}")
     public String detail(@PathVariable String forecastId, Model model) {
         try {
-            Long id = Long.parseLong(forecastId);
-            Forecast forecast = forecastService.findForeCastById(id)
+            Forecast forecast = forecastService.findForecastById(forecastId)
                     .orElseThrow(() -> new NoSuchElementException());
             model.addAttribute("forecast", forecast);
             return "views/forecast/detail.html";

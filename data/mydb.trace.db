@@ -1804,3 +1804,27 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/junsa/D
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 131 more
+2024-12-30 22:32:44.639395+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]TABLE FORECASTS_GROUPS"; expected "identifier"; SQL statement:
+DELETE TABLE FORECASTS_GROUPS [42001-224]
+2024-12-30 22:32:56.189133+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]TABLE FORECASTS_GROUPS"; expected "identifier"; SQL statement:
+DELETE TABLE FORECASTS_GROUPS [42001-224]
+2024-12-30 22:33:19.149084+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]DELETED TABLE FORECASTS_GROUPS"; expected "DELETE, DROP"; SQL statement:
+DELETED TABLE FORECASTS_GROUPS [42001-224]
+2024-12-30 22:33:20.911650+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]DELETED FORECASTS_GROUPS"; expected "DELETE, DROP"; SQL statement:
+DELETED FORECASTS_GROUPS [42001-224]
+2024-12-30 22:33:32.883879+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]DELETED TABLE FORECASTS_GROUPS"; expected "DELETE, DROP"; SQL statement:
+DELETED TABLE FORECASTS_GROUPS [42001-224]
+2024-12-30 22:33:55.918536+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]ELETE FROM FORECASTS_GROUPS"; expected "EXPLAIN, EXECUTE"; SQL statement:
+ELETE FROM FORECASTS_GROUPS [42001-224]
+2024-12-30 22:34:00.400151+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FORECASTS_GROUPS" not found; SQL statement:
+DROP TABLE FORECASTS_GROUPS [42102-224]
+2024-12-30 22:34:01.971452+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FORECASTS_GROUPS" not found; SQL statement:
+DROP TABLE FORECASTS_GROUPS [42102-224]
