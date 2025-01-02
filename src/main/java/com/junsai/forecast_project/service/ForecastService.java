@@ -48,4 +48,8 @@ public class ForecastService {
         return forecast;
     }
 
+    public void deleteForecastById(String forecastId) {
+        Forecast forecast = forecastRepository.findById(forecastId).orElseThrow(() -> new NoSuchElementException());
+        forecast.setDeleted(true);
+    }
 }

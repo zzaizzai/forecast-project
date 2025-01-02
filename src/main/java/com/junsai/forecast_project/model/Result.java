@@ -84,4 +84,8 @@ public class Result extends ForecastResultBaseEntity {
         return this.forecast.getForecastGroupId();
     }
 
+    public void softDelete() {
+        this.setDeleted(true);
+    }
+
 }

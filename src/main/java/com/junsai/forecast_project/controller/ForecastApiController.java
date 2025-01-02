@@ -1,11 +1,10 @@
 package com.junsai.forecast_project.controller;
 
 
+import com.junsai.forecast_project.dto.ForecastCreateDTO;
 import com.junsai.forecast_project.model.Forecast;
 import com.junsai.forecast_project.service.ForecastService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +21,20 @@ public class ForecastApiController {
     @GetMapping("/all")
     public List<Forecast> getAllForecasts() {
         return forecastService.getAllForecasts();
+    }
+
+    @GetMapping("/one/{forecastId}")
+    public Forecast getForecastById(@PathVariable String forecastId) {
+        return forecastService.getForecastById(forecastId).orElse(null);
+    }
+
+    @PostMapping("/create")
+    public Forecast createForecast(@RequestBody ForecastCreateDTO forecastCreateDTO) {
+        return forecastService.createForecast(forecastCreateDTO);
+    }
+
+    @DeleteMapping("/delete/{forecastId}")
+    public void deleteForecastById(@PathVariable String forecastId) {
+        forecastService.deleteForecastById(forecastId);
     }
 }

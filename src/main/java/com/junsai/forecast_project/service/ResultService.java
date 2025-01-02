@@ -21,8 +21,13 @@ public class ResultService {
         this.forecastService = forecastService;
     }
 
+    // delete this method
     public Optional<Result> findResultById(String id) {
         return this.resultRepository.findById(id);
+    }
+
+    public Optional<Result> getResultById(String resultId) {
+        return resultRepository.findById(resultId);
     }
 
     public List<Result> getAllResults() {
@@ -45,4 +50,12 @@ public class ResultService {
         Result result = new Result(forecast, resultCreateDTO.getName(), resultCreateDTO.getQuantity());
         return resultRepository.save(result);
     }
+
+
+    public void deleteResultById(String resultId) {
+        Result result = resultRepository.findById(resultId).orElseThrow(() -> new NoSuchElementException());
+        result.setDeleted(true);
+    }
+
+
 }

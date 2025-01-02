@@ -72,4 +72,9 @@ public class Forecast extends ForecastResultBaseEntity {
             return this.getQuantity() - this.getLastResult().getQuantity();
         }
     }
+    
+    public void softDelete() {
+        this.setDeleted(true);
+    }
+
 }
