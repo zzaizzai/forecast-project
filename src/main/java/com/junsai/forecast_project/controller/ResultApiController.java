@@ -32,10 +32,20 @@ public class ResultApiController {
     public Result createResult(@RequestBody ResultCreateDTO createDTO) {
         return resultService.createResult(createDTO);
     }
-    
+
     @DeleteMapping("/delete/{resultId}")
     public void deleteResultById(@PathVariable String resultId) {
         resultService.deleteResultById(resultId);
+    }
+
+    @PutMapping("/update/{resultId}")
+    public Result updateResult(@PathVariable String resultId, @RequestBody ResultCreateDTO createDTO) {
+        return resultService.updateResult(resultId, createDTO);
+    }
+
+    @PostMapping("/deletecancle/{resultId}")
+    public void deleteCancleResultById(@PathVariable String resultId) {
+        resultService.deletedCancleResultById(resultId);
     }
 
 }

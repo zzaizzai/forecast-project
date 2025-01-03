@@ -52,4 +52,17 @@ public class ForecastService {
         Forecast forecast = forecastRepository.findById(forecastId).orElseThrow(() -> new NoSuchElementException());
         forecast.setDeleted(true);
     }
+
+    public Forecast updateForecast(String forecastId, ForecastCreateDTO forecastCreateDTO) {
+        Forecast forecast = forecastRepository.findById(forecastId).orElseThrow(() -> new NoSuchElementException());
+        forecast.setName(forecastCreateDTO.getName());
+        forecast.setUnit(forecastCreateDTO.getUnit());
+        forecast.setQuantity(forecastCreateDTO.getQuantity());
+        return forecastRepository.save(forecast);
+    }
+
+    public void deletedCancleForecastById(String forecastId) {
+        Forecast forecast = forecastRepository.findById(forecastId).orElseThrow(() -> new NoSuchElementException());
+        forecast.setDeleted(false);
+    }
 }

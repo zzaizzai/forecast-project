@@ -33,8 +33,18 @@ public class ForecastApiController {
         return forecastService.createForecast(forecastCreateDTO);
     }
 
+    @PutMapping("/update/{forecastId}")
+    public Forecast updateForecast(@PathVariable String forecastId, @RequestBody ForecastCreateDTO forecastCreateDTO) {
+        return forecastService.updateForecast(forecastId, forecastCreateDTO);
+    }
+
     @DeleteMapping("/delete/{forecastId}")
     public void deleteForecastById(@PathVariable String forecastId) {
         forecastService.deleteForecastById(forecastId);
+    }
+
+    @PostMapping("/deletecancle/{forecastId}")
+    public void deleteCancleForecastById(@PathVariable String forecastId) {
+        forecastService.deletedCancleForecastById(forecastId);
     }
 }

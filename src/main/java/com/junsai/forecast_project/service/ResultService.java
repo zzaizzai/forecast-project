@@ -57,5 +57,16 @@ public class ResultService {
         result.setDeleted(true);
     }
 
+    public void deletedCancleResultById(String resultId) {
+        Result result = resultRepository.findById(resultId).orElseThrow(() -> new NoSuchElementException());
+        result.setDeleted(false);
+    }
+
+    public Result updateResult(String resultId, ResultCreateDTO resultCreateDTO) {
+        Result result = resultRepository.findById(resultId).orElseThrow(() -> new NoSuchElementException());
+        result.setName(resultCreateDTO.getName());
+        result.setQuantity(resultCreateDTO.getQuantity());
+        return resultRepository.save(result);
+    }
 
 }
