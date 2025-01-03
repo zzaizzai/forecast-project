@@ -33,6 +33,11 @@ public class ResultApiController {
         return resultService.createResult(createDTO);
     }
 
+    @PostMapping("/createrandom")
+    public void createRandomResult() {
+        Result result = resultService.createRandomResult();
+    }
+
     @DeleteMapping("/delete/{resultId}")
     public void deleteResultById(@PathVariable String resultId) {
         resultService.deleteResultById(resultId);

@@ -43,8 +43,9 @@ public class Result extends ForecastResultBaseEntity {
     }
 
     public Result(Forecast forecast, String name, Double quantity) {
-        this.forecast = forecast;
         this.unit = forecast.getUnit();
+        
+        this.forecast = forecast;
         this.name = name;
         this.quantity = quantity;
     }

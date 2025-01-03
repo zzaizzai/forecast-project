@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class ResultService {
@@ -67,6 +68,29 @@ public class ResultService {
         result.setName(resultCreateDTO.getName());
         result.setQuantity(resultCreateDTO.getQuantity());
         return resultRepository.save(result);
+    }
+
+    public Result createRandomResult() {
+
+        // get all forecast
+        List<Forecast> forecastList = forecastService.getAllForecasts();
+
+        // get random forecast
+        Random random = new Random();
+        int randomIndex = random.nextInt(forecastList.size());
+        Forecast randomForecast = forecastList.get(randomIndex);
+
+        // 80 ~ 120 %
+        int min = 80;
+        int max = 120;
+
+        // get random number
+        int randomNum = (int) (Math.random() * (max - min + 1) + min);
+        Result result = new Result(randomForecast, "Random Result", randomForecast.getQuantity() * randomNum / 100);
+        resultRepository.save(result);
+
+        return result;
+
     }
 
 }

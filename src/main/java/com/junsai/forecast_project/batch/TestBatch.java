@@ -1,6 +1,8 @@
 package com.junsai.forecast_project.batch;
 
 
+import com.junsai.forecast_project.model.Forecast;
+import com.junsai.forecast_project.model.Result;
 import com.junsai.forecast_project.service.ForecastService;
 import com.junsai.forecast_project.service.ResultService;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,13 +26,17 @@ public class TestBatch {
         System.out.println("Current time: " + java.time.LocalTime.now());
     }
 
+    // create random result per minute
+    @Scheduled(cron = "0 * * * * *")
     public void createRandomResult() {
+        Result result = resultService.createRandomResult();
+        System.out.println("Created random result(ID): " + result.getId());
+    }
 
-        forecastService.getAllForecasts().forEach(forecast -> {
-            // create random result
-            int random = (int) (Math.random() * 100);
-        });
-
-
+    // create random forecast per minute
+    @Scheduled(cron = "0 * * * * *")
+    public void createRandomForecast() {
+        Forecast forecast = forecastService.createRandomForecast();
+        System.out.println("Created random forecast(ID): " + forecast.getId());
     }
 }

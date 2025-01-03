@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class ForecastService {
@@ -64,5 +65,23 @@ public class ForecastService {
     public void deletedCancleForecastById(String forecastId) {
         Forecast forecast = forecastRepository.findById(forecastId).orElseThrow(() -> new NoSuchElementException());
         forecast.setDeleted(false);
+    }
+
+    public Forecast createRandomForecast() {
+
+        //get forecast group
+        List<ForecastGroup> forecastGroupList = forecastGroupRepository.findAll();
+        if (forecastGroupList.isEmpty()) {
+            throw new NoSuchElementException("No Forecast Group");
+        }
+
+        //get random forecast group
+        ForecastGroup forecastGroup = forecastGroupList.get(new Random().nextInt(forecastGroupList.size()));
+
+        //create random forecast
+        Random random = new Random();
+        int randomInt = random.nextInt(100) * random.nextInt(100) * 200;
+        Forecast forecast = new Forecast(forecastGroup, "Random Forecast", "Yen", randomInt);
+        return forecastRepository.save(forecast);
     }
 }

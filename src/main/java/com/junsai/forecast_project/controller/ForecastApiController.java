@@ -33,6 +33,11 @@ public class ForecastApiController {
         return forecastService.createForecast(forecastCreateDTO);
     }
 
+    @PostMapping("/createrandom")
+    public void createRandomForecast() {
+        Forecast forecast = forecastService.createRandomForecast();
+    }
+
     @PutMapping("/update/{forecastId}")
     public Forecast updateForecast(@PathVariable String forecastId, @RequestBody ForecastCreateDTO forecastCreateDTO) {
         return forecastService.updateForecast(forecastId, forecastCreateDTO);
