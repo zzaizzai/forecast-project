@@ -1,6 +1,8 @@
 package com.junsai.forecast_project.dto;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,12 +10,16 @@ import lombok.Setter;
 @Getter
 public class ResultCreateDTO {
 
+    @NotBlank(message = "Forecast ID is mandatory")
     private String forecastId;
 
+    @Size(min = 3, max = 100, message = "Name must be between 3 and 100 characters")
     private String name;
 
+    @Size(min = 1, max = 20, message = "Unit must be between 1 and 20 characters")
     private String unit;
 
+    @NotBlank(message = "Quantity is mandatory")
     private Double quantity;
 
     public ResultCreateDTO() {
