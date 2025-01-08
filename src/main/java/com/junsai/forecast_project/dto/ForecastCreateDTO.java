@@ -2,6 +2,7 @@ package com.junsai.forecast_project.dto;
 
 import com.junsai.forecast_project.model.ForecastGroup;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,7 @@ public class ForecastCreateDTO {
     @Size(min = 1, max = 20, message = "Unit must be between 1 and 20 characters")
     private String unit;
 
-    @NotBlank(message = "Quantity is mandatory")
+    @NotNull(message = "Quantity is mandatory")
     private Double quantity;
 
     public ForecastCreateDTO() {

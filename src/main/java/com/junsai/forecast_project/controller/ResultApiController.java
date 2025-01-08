@@ -4,9 +4,14 @@ package com.junsai.forecast_project.controller;
 import com.junsai.forecast_project.dto.ResultCreateDTO;
 import com.junsai.forecast_project.model.Result;
 import com.junsai.forecast_project.service.ResultService;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/result")
@@ -29,8 +34,21 @@ public class ResultApiController {
     }
 
     @PostMapping("/create")
-    public Result createResult(@RequestBody ResultCreateDTO createDTO) {
-        return resultService.createResult(createDTO);
+    public ResponseEntity<?> createResult(@RequestBody @Valid ResultCreateDTO createDTO, BindingResult bindingResult) {
+        System.out.println(createDTO.toString());
+        if (bindingResult.hasErrors()) {
+            List<String> errors = bindingResult.getAllErrors().stream()
+                    .map(error -> {
+                        String fieldName = ((FieldError) error).getField();
+                        String message = error.getDefaultMessage();
+                        return "Field '" + fieldName + "' " + message;
+                    })
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.badRequest().body(errors);
+        }
+        Result result = resultService.createResult(createDTO);
+        return ResponseEntity.ok(result);
     }
 
     @PostMapping("/createrandom")
@@ -44,7 +62,7 @@ public class ResultApiController {
     }
 
     @PutMapping("/update/{resultId}")
-    public Result updateResult(@PathVariable String resultId, @RequestBody ResultCreateDTO createDTO) {
+    public Result updateResult(@PathVariable @Valid String resultId, @RequestBody ResultCreateDTO createDTO) {
         return resultService.updateResult(resultId, createDTO);
     }
 

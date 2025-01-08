@@ -4,6 +4,7 @@ package com.junsai.forecast_project.controller;
 import com.junsai.forecast_project.dto.ForecastCreateDTO;
 import com.junsai.forecast_project.model.Forecast;
 import com.junsai.forecast_project.service.ForecastService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class ForecastApiController {
     }
 
     @PostMapping("/create")
-    public Forecast createForecast(@RequestBody ForecastCreateDTO forecastCreateDTO) {
+    public Forecast createForecast(@RequestBody @Valid ForecastCreateDTO forecastCreateDTO) {
         return forecastService.createForecast(forecastCreateDTO);
     }
 
@@ -39,7 +40,7 @@ public class ForecastApiController {
     }
 
     @PutMapping("/update/{forecastId}")
-    public Forecast updateForecast(@PathVariable String forecastId, @RequestBody ForecastCreateDTO forecastCreateDTO) {
+    public Forecast updateForecast(@PathVariable String forecastId, @RequestBody @Valid ForecastCreateDTO forecastCreateDTO) {
         return forecastService.updateForecast(forecastId, forecastCreateDTO);
     }
 
