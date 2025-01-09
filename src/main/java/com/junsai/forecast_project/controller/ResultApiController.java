@@ -37,6 +37,7 @@ public class ResultApiController {
     public ResponseEntity<?> createResult(@RequestBody @Valid ResultCreateDTO createDTO, BindingResult bindingResult) {
         System.out.println(createDTO.toString());
         if (bindingResult.hasErrors()) {
+
             List<String> errors = bindingResult.getAllErrors().stream()
                     .map(error -> {
                         String fieldName = ((FieldError) error).getField();
@@ -45,10 +46,20 @@ public class ResultApiController {
                     })
                     .collect(Collectors.toList());
 
+            // sort errors alphabetically
+            errors.sort(String::compareToIgnoreCase);
+
             return ResponseEntity.badRequest().body(errors);
         }
-        Result result = resultService.createResult(createDTO);
-        return ResponseEntity.ok(result);
+        try {
+
+            Result result = resultService.createResult(createDTO);
+            return ResponseEntity.ok(result);
+
+        } catch (Exception e) {
+            List<String> errors = List.of("An unexpected error occurred: " + e.getMessage());
+            return ResponseEntity.badRequest().body(errors);
+        }
     }
 
     @PostMapping("/createrandom")

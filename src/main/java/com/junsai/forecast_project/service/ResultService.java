@@ -47,19 +47,22 @@ public class ResultService {
 
         System.out.println(resultCreateDTO.getForecastId());
         Forecast forecast = forecastService.findForecastById(resultCreateDTO.getForecastId())
-                .orElseThrow(() -> new NoSuchElementException());
+                .orElseThrow(() -> new NoSuchElementException("No forecast found for ID: " + resultCreateDTO.getForecastId()));
+
         Result result = new Result(forecast, resultCreateDTO.getName(), resultCreateDTO.getQuantity());
         return resultRepository.save(result);
     }
 
 
     public void deleteResultById(String resultId) {
-        Result result = resultRepository.findById(resultId).orElseThrow(() -> new NoSuchElementException());
+        Result result = resultRepository.findById(resultId)
+                .orElseThrow(() -> new NoSuchElementException("No result found for ID: " + resultId));
         result.setDeleted(true);
     }
 
     public void deletedCancleResultById(String resultId) {
-        Result result = resultRepository.findById(resultId).orElseThrow(() -> new NoSuchElementException());
+        Result result = resultRepository.findById(resultId)
+                .orElseThrow(() -> new NoSuchElementException("No result found for ID: " + resultId));
         result.setDeleted(false);
     }
 
